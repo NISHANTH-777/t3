@@ -1,25 +1,19 @@
-import logo from './logo.svg';
-import './App.css';
+// /src/App.js
+import React from 'react';
+import { Provider, useSelector } from 'react-redux';
+import store from './redux/store';
+import Login from './components/Login';
+import Dashboard from './components/Dashboard';
+import './App.css'; // Import the global CSS file
 
-function App() {
+const App = () => {
+  const isAuthenticated = useSelector((state) => state.isAuthenticated);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {isAuthenticated ? <Dashboard /> : <Login />}
     </div>
   );
-}
+};
 
 export default App;
